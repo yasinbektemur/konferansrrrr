@@ -1,0 +1,5 @@
+import Link from 'next/link';
+import {requireUser} from '@/modules/identity/infrastructure/server-auth';
+import {getDatabase} from '@/modules/shared/infrastructure/database/server-database';
+import {ResearchWorkspace} from '@/modules/research/research-workspace';
+export default async function PersonalCalendar(){const user=await requireUser(),items=new ResearchWorkspace(getDatabase()).deadlines(user.id);return <main className="page"><header className="page-heading"><div><h1>Takip ettiğim tarihler</h1><p className="lede">Takip listendeki fırsatların yaklaşan sekiz son tarihi.</p></div><Link className="btn" href="/takvim">Tüm çağrı takvimi</Link></header><section className="desk-panel">{items.length?items.map((item,i)=><Link className="desk-row" key={`${item.id}-${i}`} href={`/conference/${item.id}`}><time>{item.due_at.slice(0,10)}</time><div><b>{item.title}</b><small>{item.label}</small></div></Link>):<div className="guided-empty"><h2>Takvimini takiplerin oluşturur</h2><p>İlgilendiğin fırsatı takibe al; yaklaşan tarihleri burada bul.</p><Link className="btn primary" href="/">Fırsatları keşfet</Link></div>}</section></main>;}

@@ -1,0 +1,4 @@
+import Link from 'next/link';
+import { ContentService } from '@/modules/content/content-service';
+import { getDatabase } from '@/modules/shared/infrastructure/database/server-database';
+export default function Guides(){const pages=new ContentService(getDatabase()).published();return <main className="page"><header className="page-heading"><div><h1>Araştırma rehberi</h1><p className="lede">Başvuru hazırlığı ve platform duyuruları.</p></div></header><div className="guide-grid">{pages.map(p=><Link href={`/rehber/${p.slug}`} className="guide-tile" key={p.slug}><span>Radar editörlerinden</span><h2>{p.title}</h2><p>{p.body.slice(0,200)}</p><b>Rehberi oku</b></Link>)}</div>{!pages.length&&<section className="panel"><h2>Başvuruya hazırlanırken</h2><p>Resmî çağrı koşullarını kontrol edin, uygunluğu değerlendirin ve son tarihten önce bir iç teslim tarihi belirleyin.</p><Link className="btn primary" href="/">Fırsatları keşfet</Link></section>}</main>}

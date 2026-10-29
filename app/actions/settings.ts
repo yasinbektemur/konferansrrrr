@@ -1,0 +1,5 @@
+"use server";
+import { revalidatePath } from "next/cache";
+import { requireUser } from "@/modules/identity/infrastructure/server-auth";
+import { getDatabase } from "@/modules/shared/infrastructure/database/server-database";
+export async function saveNotificationPreferences(formData:FormData){const user=await requireUser();getDatabase().prepare(`INSERT INTO notification_preferences(user_id,email_enabled,telegram_enabled,in_app_enabled,telegram_chat_id,digest_frequency,updated_at) VALUES (?,?,?,?,?,?,CURRENT_TIMESTAMP) ON CONFLICT(user_id) DO UPDATE SET email_enabled=excluded.email_enabled,telegram_enabled=excluded.telegram_enabled,in_app_enabled=excluded.in_app_enabled,telegram_chat_id=excluded.telegram_chat_id,digest_frequency=excluded.digest_frequency,updated_at=CURRENT_TIMESTAMP`).run(user.id,formData.has("email")?1:0,formData.has("telegram")?1:0,formData.has("inApp")?1:0,String(formData.get("telegramChatId")??"")||null,String(formData.get("digest")??"weekly"));revalidatePath("/settings")}

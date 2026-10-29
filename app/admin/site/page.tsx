@@ -1,0 +1,6 @@
+import Link from 'next/link';
+import {requireUserAdministrator} from '@/modules/identity/infrastructure/server-auth';
+import {ContentService} from '@/modules/content/content-service';
+import {getDatabase} from '@/modules/shared/infrastructure/database/server-database';
+import {SiteSettingsForm} from '@/components/site-settings-form';
+export default async function SiteSettings(){await requireUserAdministrator();const settings=new ContentService(getDatabase()).siteSettings();return <><header className="admin-page-head"><div><h1>Site kimliği ve gezinme</h1><p>Site adı, iletişim ve footer açıklamasını buradan düzenle.</p></div><Link className="admin-button" href="/">Siteyi aç</Link></header><div className="admin-grid"><section className="admin-card"><h2>Genel ayarlar</h2><SiteSettingsForm settings={settings}/></section><aside className="admin-card"><h2>İçeriği nereden yönetebilirim?</h2><p>Sayfaların üst menü ve footer bağlantılarını içerik editöründeki görünürlük seçeneklerinden belirleyebilirsin.</p><Link className="admin-button" href="/admin/content">İçerik stüdyosunu aç</Link><h3>Ana sayfa</h3><p>Ana sayfanın başlığı, giriş metni ve ek bölümleri de içerik editöründe düzenlenir.</p><Link className="admin-button" href="/admin/content?edit=ana-sayfa&kind=home">Ana sayfayı düzenle</Link></aside></div></>;}

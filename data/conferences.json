@@ -1,0 +1,499 @@
+[
+  {
+    "id": "miccai-2026",
+    "name": "Medical Image Computing and Computer Assisted Intervention",
+    "acronym": "MICCAI 2026",
+    "description": "Tıbbi görüntüleme, bilgisayar destekli müdahale ve klinik yapay zekâ çalıştayları.",
+    "startDate": "2027-09-20",
+    "endDate": "2027-09-24",
+    "city": "München",
+    "country": "Almanya",
+    "mode": "onsite",
+    "topics": [
+      "biyomedikal görüntüleme",
+      "yapay zekâ",
+      "tıbbi cihaz"
+    ],
+    "deadlines": {
+      "abstract": "2027-03-15",
+      "fullPaper": "2027-04-18",
+      "notification": "2027-05-30",
+      "registration": "2027-07-10",
+      "cameraReady": "2027-08-05"
+    },
+    "publication": {
+      "publisher": "Springer",
+      "indexing": [
+        "Scopus",
+        "SpringerLink"
+      ]
+    },
+    "fees": {
+      "amount": 1200,
+      "currency": "EUR",
+      "studentDiscount": true,
+      "scholarship": false,
+      "notes": "Öğrenci indirimleri mevcuttur."
+    },
+    "officialUrl": "https://miccai2026.org",
+    "source": "Resmî konferans web sitesi",
+    "lastVerified": "2026-01-12",
+    "trustLevel": "verified",
+    "trustNotes": "Resmî sayfa ve çağrı metni doğrulandı.",
+    "type": "conference"
+  },
+  {
+    "id": "embc-2026",
+    "name": "Annual International Conference of the IEEE Engineering in Medicine and Biology Society",
+    "acronym": "EMBC 2026",
+    "description": "Biyomedikal mühendisliği, sensörler, klinik sistemler ve sağlık teknolojileri için uluslararası buluşma.",
+    "startDate": "2027-07-14",
+    "endDate": "2027-07-18",
+    "city": "Kopenhag",
+    "country": "Danimarka",
+    "mode": "hybrid",
+    "topics": [
+      "sağlık yazılımı",
+      "giyilebilir sensörler",
+      "biyomedikal mühendisliği"
+    ],
+    "deadlines": {
+      "abstract": "2027-02-25",
+      "fullPaper": "2027-03-30",
+      "notification": "2027-05-02",
+      "registration": "2027-06-15",
+      "cameraReady": "2027-06-30"
+    },
+    "publication": {
+      "publisher": "IEEE",
+      "indexing": [
+        "IEEE Xplore",
+        "Scopus"
+      ]
+    },
+    "fees": {
+      "amount": 990,
+      "currency": "EUR",
+      "studentDiscount": true,
+      "scholarship": false,
+      "notes": "Hybrid katılım için uygun paketler sunulur."
+    },
+    "officialUrl": "https://embc.embs.org/2026/",
+    "source": "IEEE EMBS resmi çağrı sayfası",
+    "lastVerified": "2026-01-20",
+    "trustLevel": "verified",
+    "trustNotes": "IEEE tarafı tarafından güncel tutuluyor.",
+    "type": "conference"
+  },
+  {
+    "id": "sensors-2026",
+    "name": "International Conference on Sensors and Biomedical Applications",
+    "acronym": "SENSORS 2026",
+    "description": "Sensör teknolojileri, biyomedikal ölçüm ve implant izleme alanlarına odaklanan tartışmalar.",
+    "startDate": "2027-11-09",
+    "endDate": "2027-11-12",
+    "city": "İzmir",
+    "country": "Türkiye",
+    "mode": "onsite",
+    "topics": [
+      "giyilebilir sensörler",
+      "biyometrik ölçüm",
+      "tıbbi cihaz"
+    ],
+    "deadlines": {
+      "abstract": "2027-05-10",
+      "fullPaper": "2027-06-12",
+      "notification": "2027-07-25",
+      "registration": "2027-09-01",
+      "cameraReady": "2027-09-30"
+    },
+    "publication": {
+      "publisher": "Diğer",
+      "indexing": [
+        "Scopus"
+      ]
+    },
+    "fees": {
+      "amount": 500,
+      "currency": "TRY",
+      "studentDiscount": true,
+      "scholarship": true,
+      "notes": "Ders ve burs fırsatları açıklandı."
+    },
+    "officialUrl": "https://sensors-conference.example",
+    "source": "Örnek veri - resmi sitesinden teyit edilmeli",
+    "lastVerified": "2026-01-18",
+    "trustLevel": "unknown",
+    "trustNotes": "Örnek kayıt; resmi doğrulama gerekli.",
+    "type": "conference"
+  },
+  {
+    "id": "bhi-2026",
+    "name": "IEEE International Conference on Biomedical and Health Informatics",
+    "acronym": "BHI 2026",
+    "description": "Sağlık bilişimi, veri analitiği ve klinik karar destek sistemleri üzerine çağrı.",
+    "startDate": "2027-10-06",
+    "endDate": "2027-10-09",
+    "city": "Boston",
+    "country": "ABD",
+    "mode": "onsite",
+    "topics": [
+      "sağlık yazılımı",
+      "yapay zekâ",
+      "veri analitiği"
+    ],
+    "deadlines": {
+      "abstract": "2027-04-02",
+      "fullPaper": "2027-05-05",
+      "notification": "2027-06-10",
+      "registration": "2027-08-01",
+      "cameraReady": "2027-08-25"
+    },
+    "publication": {
+      "publisher": "IEEE",
+      "indexing": [
+        "IEEE Xplore",
+        "Scopus",
+        "WoS"
+      ]
+    },
+    "fees": {
+      "amount": 1150,
+      "currency": "USD",
+      "studentDiscount": true,
+      "scholarship": false,
+      "notes": "Erken kayıt indirimleri uygulanır."
+    },
+    "officialUrl": "https://bhi2026.org",
+    "source": "Açık çağrı listesi",
+    "lastVerified": "2026-01-05",
+    "trustLevel": "verified",
+    "trustNotes": "Güncel sayfa izleniyor.",
+    "type": "conference"
+  },
+  {
+    "id": "digihealth-2026",
+    "name": "Digital Health and AI for Clinical Care",
+    "acronym": "DIGIHEALTH 2026",
+    "description": "Dijital sağlık, klinik karar desteği ve AI tabanlı hasta izleme çalışmaları.",
+    "startDate": "2027-06-18",
+    "endDate": "2027-06-20",
+    "city": "Londra",
+    "country": "Birleşik Krallık",
+    "mode": "online",
+    "topics": [
+      "sağlık yazılımı",
+      "yapay zekâ",
+      "klinik karar sistemi"
+    ],
+    "deadlines": {
+      "abstract": "2027-02-14",
+      "notification": "2027-03-22",
+      "registration": "2027-04-15"
+    },
+    "publication": {
+      "publisher": "Elsevier",
+      "indexing": [
+        "Scopus"
+      ]
+    },
+    "fees": {
+      "amount": 450,
+      "currency": "GBP",
+      "studentDiscount": false,
+      "scholarship": false,
+      "notes": "Online katılım ücreti daha düşüktür."
+    },
+    "officialUrl": "https://digitalhealth-ai.example",
+    "source": "Örnek veri - resmi sayfa doğrulanmalı",
+    "lastVerified": "2025-12-20",
+    "trustLevel": "unknown",
+    "trustNotes": "Örnek geliştirme kaydı; doğrulama bekliyor.",
+    "type": "workshop"
+  },
+  {
+    "id": "medtech-2026",
+    "name": "MedTech Innovation Challenge",
+    "acronym": "MedTech 2026",
+    "description": "Tıbbi cihaz tasarımı, prototip geliştirme ve klinik karşılaştırma yarışması.",
+    "startDate": "2027-08-27",
+    "endDate": "2027-08-29",
+    "city": "Ankara",
+    "country": "Türkiye",
+    "mode": "hybrid",
+    "topics": [
+      "tıbbi cihaz",
+      "prototip",
+      "klinik değerlendirme"
+    ],
+    "deadlines": {
+      "abstract": "2027-04-28",
+      "notification": "2027-05-20",
+      "registration": "2027-06-10"
+    },
+    "publication": {
+      "publisher": "Yok",
+      "indexing": []
+    },
+    "fees": {
+      "amount": 250,
+      "currency": "TRY",
+      "studentDiscount": true,
+      "scholarship": true,
+      "notes": "Açık kaynak ekipler için burs fırsatı vardır."
+    },
+    "officialUrl": "https://medtechchallenge.example",
+    "source": "Açık çağrı ve kurum duyurusu",
+    "lastVerified": "2026-01-08",
+    "trustLevel": "unknown",
+    "trustNotes": "Kurum duyurusu doğrulama bekliyor.",
+    "type": "competition"
+  },
+  {
+    "id": "biosignals-2026",
+    "name": "Biosignals and Wearable Technologies Summit",
+    "acronym": "BIOSIGNALS 2026",
+    "description": "Biyosinyal işleme, giyilebilir cihazlar ve uzun süreli izleme için bir fikir platformu.",
+    "startDate": "2027-09-01",
+    "endDate": "2027-09-03",
+    "city": "Seul",
+    "country": "Güney Kore",
+    "mode": "onsite",
+    "topics": [
+      "giyilebilir sensörler",
+      "biyosinyal",
+      "yaşam analitiği"
+    ],
+    "deadlines": {
+      "abstract": "2027-03-05",
+      "fullPaper": "2027-04-10",
+      "notification": "2027-05-16",
+      "registration": "2027-06-28"
+    },
+    "publication": {
+      "publisher": "Elsevier",
+      "indexing": [
+        "Scopus",
+        "WoS"
+      ]
+    },
+    "fees": {
+      "amount": 760,
+      "currency": "USD",
+      "studentDiscount": true,
+      "scholarship": false,
+      "notes": "Öğrenci katılımı uygun fiyatlandırılmıştır."
+    },
+    "officialUrl": "https://biosignals-summit.example",
+    "source": "Örnek etkinlik sayfası",
+    "lastVerified": "2025-12-18",
+    "trustLevel": "suspicious",
+    "trustNotes": "Kaynak linki kontrol edilmelidir.",
+    "type": "conference"
+  },
+  {
+    "id": "clinical-ai-2026",
+    "name": "Clinical AI and Diagnostics Forum",
+    "acronym": "CLIN-AI 2026",
+    "description": "Klinik karar destek, tanı sistemleri ve güvenilir yapay zeka uygulamaları için fikir paylaşımı.",
+    "startDate": "2027-12-02",
+    "endDate": "2027-12-05",
+    "city": "İstanbul",
+    "country": "Türkiye",
+    "mode": "hybrid",
+    "topics": [
+      "yapay zekâ",
+      "tanı sistemleri",
+      "sağlık yazılımı"
+    ],
+    "deadlines": {
+      "abstract": "2027-06-20",
+      "fullPaper": "2027-07-18",
+      "notification": "2027-08-30",
+      "registration": "2027-10-05"
+    },
+    "publication": {
+      "publisher": "IEEE",
+      "indexing": [
+        "IEEE Xplore"
+      ]
+    },
+    "fees": {
+      "amount": 620,
+      "currency": "TRY",
+      "studentDiscount": true,
+      "scholarship": false,
+      "notes": "Dijital ve yüz yüze tarifeler ayrılmıştır."
+    },
+    "officialUrl": "https://clinicalaiforum.example",
+    "source": "Yerel akademik duyuru",
+    "lastVerified": "2026-01-07",
+    "trustLevel": "unknown",
+    "trustNotes": "Yönetici onayı ile listeye alınmıştır.",
+    "type": "conference"
+  },
+  {
+    "id": "biomed-robotics-2026",
+    "name": "International Conference on Biomedical Robotics and Assistive Systems",
+    "acronym": "BIOMEDROB 2026",
+    "description": "Biyomedikal robotlar, rehabilitasyon ve yardımcı sistemler için akademik ve endüstriyel buluşma.",
+    "startDate": "2027-05-25",
+    "endDate": "2027-05-28",
+    "city": "Tokyo",
+    "country": "Japonya",
+    "mode": "onsite",
+    "topics": [
+      "biyomedikal robotik",
+      "rehabilitasyon",
+      "tıbbi cihaz"
+    ],
+    "deadlines": {
+      "abstract": "2027-01-30",
+      "fullPaper": "2027-02-25",
+      "notification": "2027-03-28",
+      "registration": "2027-04-20",
+      "cameraReady": "2027-05-01"
+    },
+    "publication": {
+      "publisher": "Springer",
+      "indexing": [
+        "Scopus",
+        "WoS"
+      ]
+    },
+    "fees": {
+      "amount": 980,
+      "currency": "USD",
+      "studentDiscount": true,
+      "scholarship": false,
+      "notes": "Kurum destekli kayıt için başvuru açılır."
+    },
+    "officialUrl": "https://biomedrobotics.example",
+    "source": "Akademik duyuru",
+    "lastVerified": "2025-11-29",
+    "trustLevel": "unknown",
+    "trustNotes": "Resmî web sayfası doğrulaması bekleniyor.",
+    "type": "conference"
+  },
+  {
+    "id": "health-ai-fair-2026",
+    "name": "Health AI and Medical Innovation Fair",
+    "acronym": "HEALTHAI FAIR",
+    "description": "Sağlık teknolojileri, medikal AI ve endüstri iş birlikleri için fuar ve demo alanı.",
+    "startDate": "2027-07-29",
+    "endDate": "2027-07-31",
+    "city": "Berlin",
+    "country": "Almanya",
+    "mode": "onsite",
+    "topics": [
+      "sağlık yazılımı",
+      "tıbbi cihaz",
+      "yapay zekâ"
+    ],
+    "deadlines": {
+      "abstract": "2027-03-12",
+      "notification": "2027-04-17",
+      "registration": "2027-05-25"
+    },
+    "publication": {
+      "publisher": "Diğer",
+      "indexing": []
+    },
+    "fees": {
+      "amount": 300,
+      "currency": "EUR",
+      "studentDiscount": false,
+      "scholarship": false,
+      "notes": "Fuar ve demo katılımı için ayrı tarife uygulanır."
+    },
+    "officialUrl": "https://healthai-fair.example",
+    "source": "Fuar duyurusu",
+    "lastVerified": "2026-01-10",
+    "trustLevel": "verified",
+    "trustNotes": "Duyuru ve katılım koşulları resmî platformda görüldü.",
+    "type": "fair"
+  },
+  {
+    "id": "genomics-health-2026",
+    "name": "Genomics and Precision Health Congress",
+    "acronym": "GENHEALTH 2026",
+    "description": "Genomik veriler, kişiselleştirilmiş tedavi ve biyoinformatik alanları kapsamlı bir platformda buluşuyor.",
+    "startDate": "2027-06-09",
+    "endDate": "2027-06-12",
+    "city": "Madrid",
+    "country": "İspanya",
+    "mode": "hybrid",
+    "topics": [
+      "biyoinformatik",
+      "genomik",
+      "kişiselleştirilmiş tıp"
+    ],
+    "deadlines": {
+      "abstract": "2027-02-09",
+      "fullPaper": "2027-03-18",
+      "notification": "2027-04-26",
+      "registration": "2027-05-18",
+      "cameraReady": "2027-06-01"
+    },
+    "publication": {
+      "publisher": "Elsevier",
+      "indexing": [
+        "Scopus",
+        "WoS"
+      ]
+    },
+    "fees": {
+      "amount": 890,
+      "currency": "EUR",
+      "studentDiscount": true,
+      "scholarship": false,
+      "notes": "Erken kayıt indirimi mevcuttur."
+    },
+    "officialUrl": "https://genomics-health.example",
+    "source": "Uluslararası çağrı sayfası",
+    "lastVerified": "2025-12-12",
+    "trustLevel": "suspicious",
+    "trustNotes": "Yalnızca arşiv sayfası bulundu; teyit gerekli.",
+    "type": "conference"
+  },
+  {
+    "id": "biostat-2026",
+    "name": "Biostatistics and Clinical Data Science Symposium",
+    "acronym": "BIOSTAT 2026",
+    "description": "Biyoistatistik, klinik veri analitiği ve güvenilir karar destek modelleri için uzman sempozyumu.",
+    "startDate": "2027-11-18",
+    "endDate": "2027-11-20",
+    "city": "İzmir",
+    "country": "Türkiye",
+    "mode": "online",
+    "topics": [
+      "sağlık yazılımı",
+      "veri analitiği",
+      "biyomedikal görüntüleme"
+    ],
+    "deadlines": {
+      "abstract": "2027-05-28",
+      "notification": "2027-06-25",
+      "registration": "2027-07-20"
+    },
+    "publication": {
+      "publisher": "Diğer",
+      "indexing": [
+        "Scopus"
+      ]
+    },
+    "fees": {
+      "amount": 180,
+      "currency": "TRY",
+      "studentDiscount": true,
+      "scholarship": true,
+      "notes": "Online katılım için öğrenciler için esnek ücretler."
+    },
+    "officialUrl": "https://biostat-symposium.example",
+    "source": "Açık akademik çağrı",
+    "lastVerified": "2026-01-15",
+    "trustLevel": "unknown",
+    "trustNotes": "Yeni eklenen örnek veri; teyit bekliyor.",
+    "type": "workshop"
+  }
+]

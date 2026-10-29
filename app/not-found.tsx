@@ -1,0 +1,2 @@
+import Link from "next/link";
+export default function NotFound(){return <div className="page" style={{display:"grid",placeItems:"center",minHeight:"80vh"}}><div className="empty" style={{maxWidth:600}}><span className="eyebrow">404 · Sinyal kayıp</span><h1>Bu kayıt radarda yok</h1><p>Bağlantı değişmiş veya fırsat arşivlenmiş olabilir. Güncel fırsat akışına dönüp yeniden arayabilirsin.</p><Link href="/" className="btn primary">Radara dön</Link></div></div>}

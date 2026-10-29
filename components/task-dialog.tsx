@@ -1,0 +1,12 @@
+'use client';
+import {useRef,useActionState} from 'react';
+import {taskAction} from '@/app/actions/tasks';
+type Task={id:string;title:string;status:string};
+export function TaskDialog({applicationId,title,tasks,trash=[]}:{applicationId:string;title:string;tasks:Task[];trash?:Task[]}){
+ const ref=useRef<HTMLDialogElement>(null),[state,action,pending]=useActionState(taskAction,{});
+ return <><button className="btn" style={{width:'100%',marginTop:10}} onClick={()=>ref.current?.showModal()}>Görevler ({tasks.length})</button><dialog className="preview" ref={ref}><div className="preview-head"><h2>{title}</h2><button className="icon-btn" aria-label="Kapat" onClick={()=>ref.current?.close()}>×</button></div><div className="preview-body">
+ {tasks.map(t=><div key={t.id} className="task-management"><form action={action} className="desk-row"><input type="hidden" name="id" value={t.id}/><span style={{textDecoration:t.status==='done'?'line-through':'none'}}>{t.title}</span><div>{t.status==='done'?<><button className="btn" disabled>Tamamlandı</button><button className="btn" name="command" value="reopen" disabled={pending}>Yeniden aç</button></>:<button className="btn" name="command" value="complete" disabled={pending}>Tamamla</button>}</div></form><details><summary>Görevi düzenle veya kaldır</summary><form action={action} className="form-stack"><input type="hidden" name="id" value={t.id}/><label>Görev adı<input className="field" name="title" defaultValue={t.title} required minLength={3} maxLength={200}/></label><button className="btn" name="command" value="rename" disabled={pending}>Adı kaydet</button><button className="btn" name="command" value="trash" disabled={pending}>Görevi çöpe taşı</button></form></details></div>)}
+ <form action={action} className="form-stack"><input type="hidden" name="command" value="add"/><input type="hidden" name="applicationId" value={applicationId}/><label>Yeni görev<input className="field" name="title" required minLength={3} maxLength={200}/></label><button className="btn primary" disabled={pending}>Görev ekle</button></form>
+ {trash.length>0&&<details><summary>Silinen görevler ({trash.length})</summary>{trash.map(t=><form key={t.id} action={action} className="desk-row"><span>{t.title}</span><input type="hidden" name="id" value={t.id}/><button className="btn" name="command" value="restore" disabled={pending}>Görevi geri al</button></form>)}</details>}
+ {state.error&&<p className="error" role="alert">{state.error}</p>}{state.success&&<p role="status">{state.success}</p>}</div></dialog></>;
+}

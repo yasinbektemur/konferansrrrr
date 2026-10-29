@@ -1,0 +1,7 @@
+import Link from 'next/link';
+import {requireUser} from '@/modules/identity/infrastructure/server-auth';
+import {getDatabase} from '@/modules/shared/infrastructure/database/server-database';
+import {ApplicationQueries} from '@/modules/applications/infrastructure/application-queries';
+import {ApplicationTasks} from '@/modules/applications/application/application-tasks';
+import {TaskDialog} from '@/components/task-dialog';
+export default async function MyTasks(){const user=await requireUser(),db=getDatabase(),applications=new ApplicationQueries(db).boardForUser(user.id),tasks=new ApplicationTasks(db);return <main className="page"><header className="page-heading"><div><h1>Görevlerim</h1><p className="lede">Başvuru dosyalarındaki hazırlık adımlarını birlikte gör.</p></div><Link className="btn" href="/panel">Hazırlık panosunu aç</Link></header>{applications.length?<div className="task-overview-grid">{applications.map(a=><section className="desk-panel" key={a.id}><h2>{a.title}</h2><p>{a.completedTaskCount} / {a.taskCount} görev tamamlandı</p><progress aria-label={`${a.title} görev ilerlemesi`} value={a.completedTaskCount} max={Math.max(1,a.taskCount)}/><TaskDialog applicationId={a.id} title={a.title} tasks={tasks.list(user.id,a.id)} trash={tasks.list(user.id,a.id,true)}/></section>)}</div>:<div className="empty"><h2>Hazırlık dosyan henüz yok</h2><p>Bir ilan detayından hazırlık alanı oluşturduğunda görevlerini burada yönetebilirsin.</p><Link className="btn primary" href="/">Fırsat bul</Link></div>}</main>;}

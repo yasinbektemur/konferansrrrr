@@ -1,0 +1,5 @@
+import {requireUser} from '@/modules/identity/infrastructure/server-auth';
+import {getDatabase} from '@/modules/shared/infrastructure/database/server-database';
+import {ResearchWorkspace} from '@/modules/research/research-workspace';
+import {ActionForm} from '@/components/action-form';
+export default async function Profile(){const u=await requireUser(),p=new ResearchWorkspace(getDatabase()).profile(u.id);return <div className="page"><header className="page-heading"><div><h1>Araştırmacı profilim</h1><p className="lede">{u.displayName} · {u.email}</p></div></header><section className="desk-panel" style={{maxWidth:760}}><ActionForm><input type="hidden" name="command" value="profile"/><label>Ünvan / araştırma alanı<input className="field" name="title" maxLength={100} defaultValue={p?.title??''}/></label><label>ORCID kimliği<input className="field" name="orcid" placeholder="0000-0000-0000-0000" defaultValue={p?.orcid_id??''}/></label><label>Kısa biyografi<textarea className="field" name="biography" maxLength={2000} defaultValue={p?.biography??''}/></label></ActionForm></section></div>}

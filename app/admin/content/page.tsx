@@ -1,0 +1,20 @@
+import Link from 'next/link';
+import {requireAdmin} from '@/modules/identity/infrastructure/server-auth';
+import {getDatabase} from '@/modules/shared/infrastructure/database/server-database';
+import {ContentService,type ContentPage} from '@/modules/content/content-service';
+import {ContentEditor} from '@/components/content-editor';
+import {ContentLifecycleForm} from '@/components/content-lifecycle-form';
+import {RestoreContentForm} from '@/components/site-settings-form';
+export default async function ContentManagement({searchParams}:{searchParams:Promise<{edit?:string;kind?:string;q?:string;status?:string;saved?:string;restored?:string}>}){
+ await requireAdmin();const query=await searchParams,cms=new ContentService(getDatabase()),all=cms.list(query.status==='trash'),selected=all.find(p=>p.slug===query.edit);
+ const pages=all.filter(p=>(!query.kind||p.kind===query.kind)&&(!query.status||query.status==='trash'||p.status===query.status)&&(!query.q||p.title.toLocaleLowerCase('tr').includes(query.q.toLocaleLowerCase('tr'))));
+ const initialKind:ContentPage['kind']=['page','home'].includes(query.kind??'')?query.kind as 'page'|'home':'guide';
+ return <><header className="admin-page-head"><div><h1>İçerik stüdyosu</h1><p>Sayfa oluştur, bölümler ekle, önizle ve site menülerinde yayımla.</p></div><Link className="admin-button" href={selected?.kind==='page'?`/sayfa/${selected.slug}`:selected?.kind==='home'?'/':'/rehber'}>Vitrinde görüntüle</Link></header>
+ <div className="cms-type-tabs"><Link href="/admin/content">Tüm içerikler ({all.length})</Link><Link href="/admin/content?kind=page">Site sayfaları</Link><Link href="/admin/content?kind=guide">Rehberler</Link><Link href="/admin/content?status=trash">Çöp kutusu</Link><Link href="/admin/content?edit=ana-sayfa&kind=home">Ana sayfa</Link></div>
+ {selected&&Number(query.saved)===selected.version&&<p className="notice" role="status">İçerik ve sürüm geçmişi kaydedildi.</p>}
+ {selected&&Number(query.restored)===selected.version&&<p className="notice" role="status">Önceki içerik yeni bir sürüm olarak geri yüklendi.</p>}
+ <div className="cms-management-grid"><section className="admin-card"><h2>{selected?'İçeriği düzenle':'Yeni içerik'}</h2>{!selected?.deletedAt&&<ContentEditor key={`${selected?.slug??initialKind}-${selected?.version}`} page={selected} initialKind={initialKind}/>} {selected&&<ContentLifecycleForm slug={selected.slug} version={selected.version} deleted={Boolean(selected.deletedAt)}/>}</section><aside className="admin-card"><h2>İçerik arşivi</h2><form className="form-stack"><input type="hidden" name="kind" value={query.kind??''}/><input className="admin-field" name="q" aria-label="İçerik ara" placeholder="Başlık ara" defaultValue={query.q}/><select className="admin-field" name="status" aria-label="İçerik durumu" defaultValue={query.status??''}><option value="">Tüm durumlar</option><option value="draft">Taslak</option><option value="published">Yayında</option><option value="archived">Arşiv</option><option value="trash">Çöp kutusu</option></select><button className="admin-button">İçerikleri filtrele</button></form><Link href="/admin/content?kind=page" className="admin-button new-content-link">Yeni site sayfası</Link>
+ {pages.map(p=><Link className="content-list-item" key={p.slug} href={`/admin/content?edit=${p.slug}${p.deletedAt?'&status=trash':''}`}><b>{p.title}</b><small>{p.kind==='home'?'Ana sayfa':p.kind==='page'?'Site sayfası':'Rehber'} · {p.status==='published'?'Yayında':p.status==='draft'?'Taslak':'Arşiv'} · v{p.version}</small></Link>)}{!pages.length&&<p>Bu filtrede içerik yok. Yeni bir sayfa oluşturabilirsin.</p>}
+ {selected&&<><h2>Sürüm geçmişi</h2><p>Geri yükleme yeni bir sürüm oluşturur; eski kayıtlar korunur.</p>{cms.versions(selected.slug).map(v=><details key={v.id} className="revision"><summary>Sürüm {v.version} · {v.status}</summary><p>{v.title}</p><p>{v.body.slice(0,300)}</p><small>{v.blocks.length} bölüm · {v.created_at}</small>{v.version!==selected.version&&<RestoreContentForm slug={selected.slug} version={selected.version} sourceVersion={v.version}/>}</details>)}</>}
+ </aside></div></>;
+}

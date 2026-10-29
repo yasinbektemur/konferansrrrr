@@ -1,0 +1,5 @@
+import { NextResponse } from "next/server";
+import { getDatabase } from "@/modules/shared/infrastructure/database/server-database";
+import { SqliteOpportunityRepository } from "@/modules/opportunities/infrastructure/sqlite-opportunity-repository";
+const escape=(value:string)=>value.replace(/[<>&'\"]/g,char=>({"<":"&lt;",">":"&gt;","&":"&amp;","'":"&apos;",'"':"&quot;"}[char]!));
+export function GET(){const items=new SqliteOpportunityRepository(getDatabase()).search({sort:"newest",pageSize:30}).items.map(x=>x.props).map(o=>`<item><title>${escape(o.title)}</title><link>${escape(o.officialUrl)}</link><guid isPermaLink="false">${escape(o.id)}</guid><description>${escape(o.summary)}</description></item>`).join("");return new NextResponse(`<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>Konferans Radar</title><link>${escape(process.env.APP_URL??"http://localhost:3000")}</link><description>Araştırma fırsatları</description>${items}</channel></rss>`,{headers:{"Content-Type":"application/rss+xml; charset=utf-8"}})}

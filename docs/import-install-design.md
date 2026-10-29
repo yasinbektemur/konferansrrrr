@@ -1,0 +1,10 @@
+# Kurulum ve CSV aktarım kararı
+
+Kurulum Node.js 24+ çalışma zamanı kullanır. Uygun sistem kurulumu korunur; eksik/eski sürümde resmi Node dağıtımı proje içindeki .runtime klasörüne kurulur ve SHA-256 özeti doğrulanır. Ortak Node kurulum komutu bağımlılık, ortam, yedek, migration, test ve build adımlarını iki işletim sisteminde aynı sırada yürütür.
+
+CSV iş akışı: şablon ve kurallar → dosya denetimi → satır önizlemesi → açık onay → sonuç. Kurum aktarımı taslak oluşturur; yönetim aktarımı onaylanan katalog çağrılarını yayımlar. Aktarım mevcut kayıtları sessizce değiştirmez. Aynı referans ve içerik atlanır; değişmiş içerik düzeltme hatasıdır. Bir hata tüm dosyanın kaydını engeller. Yetki ve mevcut veriler onay anında yeniden denetlenir.
+
+Görsel plan: mevcut panelin #163046 metni, #087f8c işlemleri, #e8f3f7 bilgi alanları, #ffffff zemini ve #b42318 hataları kullanılır. Aptos/Segoe UI panel tipografisi korunur. Solda dosya ve kurallar, altta satır tablosu; hatalar satır/sütun/değer/çözüm alanlarına ayrılır. Mobilde tablo kendi içinde kayar; hata filtresi ve 20 satırlık sayfalama bulunur. Önizleme yalnızca sayılar değil gerçek ilan alanlarını gösterir. Ek dekoratif kartlar yerine işlem sırası görünür tutulur.
+
+Referanslar: [Node SQLite](https://nodejs.org/api/sqlite.html), [resmi Node dağıtımları](https://nodejs.org/dist/), [PowerShell çıkış kodları](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_automatic_variables#lastexitcode), [OWASP CSV güvenliği](https://owasp.org/www-community/attacks/CSV_Injection). CSV dışa aktarmada hücre tırnaklama ve formül başlangıcına metin öneki uygulanır; tüm elektronik tablo uygulamalarında yeniden kaydetme davranışı garanti edilmez.
+Görsel doğrulama: masaüstünde kural tablosunun dar sütunda kesildiği ve dosya seçiminin altında gereksiz boş alan oluştuğu görüldü. Kurallar tam genişliğe alındı; mobilde sütun adı, zorunluluk ve kural aynı dikey satırda gösteriliyor. Düzenleme düğmesi dosya kontrolünün yanına taşındı. 390px ve 1440px ekran görüntüleri tekrar incelendi; kullanım sihirbazı mobilde geri/ileri/atla kontrollerini koruyor.

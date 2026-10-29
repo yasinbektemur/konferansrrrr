@@ -1,0 +1,33 @@
+import Link from 'next/link';
+import {OpportunityExplorer} from '@/components/opportunity-explorer';
+import {RecentOpportunities,TopicDirectory,InstitutionDiscovery,GuideDiscovery} from '@/components/portal-discovery';
+import {ResearchIllustration} from '@/components/research-illustration';
+import {ContentSections} from '@/components/content-sections';
+import {SearchIcon,ArrowIcon,BriefcaseIcon,BookIcon,BuildingIcon,CalendarIcon,LayersIcon,GlobeIcon,BookmarkIcon} from '@/components/icons';
+import {getCurrentUser} from '@/modules/identity/infrastructure/server-auth';
+import {getDatabase} from '@/modules/shared/infrastructure/database/server-database';
+import {SqliteOpportunityRepository} from '@/modules/opportunities/infrastructure/sqlite-opportunity-repository';
+import {OpportunityFacets} from '@/modules/opportunities/infrastructure/opportunity-facets';
+import {catalogQuery,type CatalogParams} from '@/modules/opportunities/presentation/search-params';
+import {ContentService} from '@/modules/content/content-service';
+import {getRecruitment} from '@/modules/marketplace/infrastructure/server-recruitment';
+const categories=[['conference','Konferanslar',BuildingIcon],['grant','Hibe ve fonlar',BriefcaseIcon],['fellowship','Burslar',BookIcon],['workshop','Çalıştaylar',LayersIcon],['special_issue','Yayın çağrıları',BookIcon],['competition','Yarışmalar',GlobeIcon],['award','Ödüller',BookmarkIcon],['fair','Fuarlar',BuildingIcon]] as const;
+export async function generateMetadata(){const home=new ContentService(getDatabase()).findPublished('ana-sayfa');return {title:home?.title??'Araştırmanın bir sonraki adımı',description:home?.seoDescription||home?.body};}
+export default async function Home({searchParams}:{searchParams:Promise<CatalogParams>}){
+ const params=await searchParams,user=await getCurrentUser(),db=getDatabase(),repository=new SqliteOpportunityRepository(db),cms=new ContentService(db);
+ const result=repository.search({...catalogQuery(params),pageSize:8,viewerUserId:user?.id}),counts=repository.countByType(),facets=new OpportunityFacets(db).getAll();
+ const upcoming=repository.search({sort:'deadline',pageSize:5}).items.filter(o=>o.nearestDeadline()),recent=repository.search({sort:'newest',pageSize:4}).items;
+ const total=counts.reduce((sum,item)=>sum+item.count,0),home=cms.findPublished('ana-sayfa'),institutions=getRecruitment().directory('').items;
+ const filtered=Object.entries(params).some(([key,value])=>key!=='page'&&value&&String(value).length>0);
+ return <main className={`page portal-home ${filtered?'has-search':''}`}>
+  {!filtered&&<><header className="portal-hero"><div className="portal-hero-copy"><p className="hero-caption"><span/> Araştırma ve kariyer fırsatları</p><h1>{home?.title??'Araştırmana yeni bir kapı aç.'}</h1><p className="hero-description">{home?.body??'Konferansları keşfet, araştırma çağrılarını takip et, bir sonraki adımını planla.'}</p><form className="portal-hero-search" action="/"><SearchIcon/><input name="q" aria-label="Anahtar kelime veya kurum" placeholder="Araştırma alanı, çağrı veya kurum adı"/><button className="btn primary">Fırsat bul <ArrowIcon/></button></form><div className="hero-topic-links"><span>Alanına göz at:</span>{facets.topics.slice(0,3).map(t=><Link href={`/?topic=${t.slug}`} key={t.slug}>{t.name}</Link>)}</div></div><aside className="portal-hero-aside"><ResearchIllustration/><div><b>Bilgini yeni bir deneyime dönüştür.</b><span>{total} katalog kaydı · {facets.countries.length} ülke</span><Link href="/kurum-paneli">Kurumlar için yayın alanı <ArrowIcon/></Link></div></aside></header>
+  <section className="opportunity-type-directory" aria-label="Fırsat kategorileri">{categories.map(([type,label,Icon])=><Link key={type} href={`/?type=${type}`}><Icon aria-hidden="true"/><b>{label}</b><span>{counts.find(c=>c.type===type)?.count??0} fırsat</span></Link>)}</section><RecentOpportunities items={recent}/></>}
+  <div className="market-layout portal-results-layout" id="firsatlar"><section className="market-feed" aria-label="Fırsat akışı"><div className="feed-heading"><div><h2>{filtered?'Arama sonuçları':'Fırsat akışı'}</h2><p>{filtered?'Filtrelerini birlikte kullanarak aramanı daralt.':'Araştırma alanına uygun çağrıları yakından incele.'}</p></div><Link href="/takvim"><CalendarIcon/> Takvimde gör</Link></div><OpportunityExplorer result={{...result,items:result.items.map(item=>({props:item.props}))}} facets={facets} params={params} authenticated={Boolean(user)}/><p className="catalog-disclosure">“Örnek katalog” etiketli kayıtlar canlı doğrulanmış değildir. Güncel tarih ve koşulları resmî çağrıdan kontrol et.</p></section>
+  <aside className="market-sidebar"><section className="research-pass"><span className="pass-symbol"><BookmarkIcon/></span><h2>{user?`Merhaba, ${user.displayName.split(' ')[0]}.`:'Fırsatlarını yanında tut.'}</h2><p>Takip listelerin, başvuru hazırlığın ve kurumlara gönderdiğin başvurular tek yerde.</p><Link className="btn primary" href={user?'/hesabim':'/login'}>{user?'Çalışma masama git':'Ücretsiz hesap oluştur'}</Link><div className="quick-workspace"><Link href="/followed">Takip listem</Link><Link href="/hesabim/basvurular">Başvurularım</Link></div></section>
+  <section className="deadline-digest"><header><h2>Takvimine ekle</h2><Link href="/takvim">Tümü</Link></header>{upcoming.map(o=>{const d=o.nearestDeadline()!;return <Link className="deadline-entry" key={o.id} href={`/conference/${o.id}`}><time dateTime={d.dueAt}><b>{new Date(d.dueAt).getUTCDate()}</b><span>{new Intl.DateTimeFormat('tr-TR',{month:'short',timeZone:'UTC'}).format(new Date(d.dueAt))}</span></time><div><strong>{o.props.acronym??o.props.title}</strong><small>{d.label}</small><em>{d.daysLeft} gün kaldı{o.props.sampleData?' · örnek':''}</em></div></Link>;})}{!upcoming.length&&<p>Yaklaşan kayıtlı tarih bulunmuyor.</p>}</section>
+  <section className="sidebar-topics"><h2>İlgini çeken alanlar</h2>{facets.topics.slice(0,5).map(t=><Link href={`/?topic=${t.slug}`} key={t.slug}><span>{t.name}</span><b>{t.count}</b></Link>)}<Link href="/#alanlar">Tüm araştırma alanları <ArrowIcon/></Link></section>
+  <section className="institution-invite"><BuildingIcon/><h2>Çağrını araştırmacılarla buluştur.</h2><p>Kurum profili, ilan yayını ve aday değerlendirmesi için çalışma alanını oluştur.</p><Link className="btn" href="/kurum-paneli">İlan yayımlamaya başla</Link></section>
+  </aside></div>
+  <TopicDirectory topics={facets.topics} countries={facets.countries}/><InstitutionDiscovery institutions={institutions}/><GuideDiscovery guides={cms.published()}/>{home&&<ContentSections blocks={home.blocks}/>}
+ </main>;
+}

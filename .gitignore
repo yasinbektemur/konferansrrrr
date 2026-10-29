@@ -53,3 +53,4 @@ next-env.d.ts
 *.migration.lock
 *.migration-failures.log
 !/data/conferences.json
+.Rhistory
